@@ -88,7 +88,8 @@ function App() {
             return (
               <li key={game.id}>
                 <p className="listItem">
-                  {game.username || 'Anonimo'} - {game.name}
+                  {game.username ? game.username + ' - ' : ''}
+                  {game.name}
                 </p>
               </li>
             )
