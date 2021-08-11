@@ -14,15 +14,9 @@ type games = {
   username: string
   completed: boolean
 }
-type movies = {
-  id: number
-  name: string
-  username: string
-  completed: boolean
-}
 
 function App() {
-  const [state, setState] = React.useState<games[] | movies[]>([])
+  const [state, setState] = React.useState<games[]>([])
   const [buttonListGames, setButtonList] = React.useState(false)
   const [buttonCompletedGames, setButtonCompleted] = React.useState(false)
   const [buttonListMovies, setButtonListMovies] = React.useState(false)
@@ -103,7 +97,7 @@ function App() {
 
     const res = await axios.get('https://bot-lya.herokuapp.com/api/movies')
     setIsLoading(false)
-    const completed = res.data.filter((movies: movies) => {
+    const completed = res.data.filter((movies: games) => {
       return !movies.completed
     })
     setState(completed)
@@ -119,7 +113,7 @@ function App() {
     setTitle('Filmes Completos')
 
     const res = await axios.get('https://bot-lya.herokuapp.com/api/movies')
-    const completed = res.data.filter((movies: movies) => {
+    const completed = res.data.filter((movies: games) => {
       return movies.completed
     })
     setState(completed)
@@ -130,11 +124,7 @@ function App() {
     <div className="App">
       <NavBar>
         <h1 className="logo">LyaBarriere</h1>
-        <Button
-          style={{ marginLeft: '17%' }}
-          onClick={(e) => handleListClickGames(e)}
-          isActive={buttonListGames}
-        >
+        <Button style={{ marginLeft: '17%' }} onClick={(e) => handleListClickGames(e)} isActive={buttonListGames}>
           Jogos na Lista
         </Button>
         <Button onClick={(e) => handleCompletedClickGames(e)} isActive={buttonCompletedGames}>
@@ -149,17 +139,13 @@ function App() {
       </NavBar>
       <main className="App-header">
         <h1>{title}</h1>
-        {isLoading && (
-          <ReactLoading type={'spinningBubbles'} color={'white'} height={300} width={300} />
-        )}
+        {isLoading && <ReactLoading type={'spinningBubbles'} color={'white'} height={300} width={300} />}
         <ul>
-          {state.map((game, i) => {
+          {state.map((game) => {
             return (
               <li key={game.id}>
-                <p className="listItem">
-                  {game.username ? game.username + ' - ' : ''}
-                  {game.name}
-                </p>
+                <span className="listItem">{game.name}</span>
+                <span className="listItem2">{game.username}</span>
               </li>
             )
           })}

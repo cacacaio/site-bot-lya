@@ -10,11 +10,7 @@ export function Button(props: {
 }) {
   const { style, children, onClick, isActive } = props
   return (
-    <button
-      className={`button-primary ${isActive ? 'active' : ''}`}
-      style={style}
-      onClick={(e) => onClick(e)}
-    >
+    <button className={`button-primary ${isActive ? 'active' : ''}`} style={style} onClick={(e) => onClick(e)}>
       {children}
     </button>
   )

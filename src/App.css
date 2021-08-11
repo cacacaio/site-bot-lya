@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -15,6 +16,7 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
+  padding: 0 30px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -22,10 +24,12 @@
   color: white;
   padding-top: 5%;
 }
+
 /* List */
 ul {
   counter-reset: index;  
   padding: 0;
+  width: 40%;
 }
 
 /* List element */
@@ -55,6 +59,10 @@ li + li {
   border-top: 1px solid rgba(255,255,255,0.2);
 }
 
+li:hover{
+  background-color: #52565e;
+}
+
 .button {
   background-color: #555555;
   border: none;
@@ -80,4 +88,8 @@ li + li {
 
 .listItem {
   margin-left: 20px;
+  padding: 20px 0;
+}
+.listItem2{
+  margin-left: auto;
 }
