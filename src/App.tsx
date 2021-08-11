@@ -3,6 +3,8 @@ import './App.css'
 
 import React, { useEffect } from 'react'
 
+import { Button } from './Components/Button/Button'
+import { NavBar } from './Components/Navbar/Navbar'
 import ReactLoading from 'react-loading'
 import axios from 'axios'
 
@@ -51,9 +53,10 @@ function App() {
       apiGetGames()
     }
   }, [])
+
   document.title = 'Lista Filmes / Jogos'
 
-  const handleListClickGames = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleListClickGames = async (e: React.MouseEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setButtonList(true)
@@ -70,7 +73,7 @@ function App() {
     setIsLoading(false)
   }
 
-  const handleCompletedClickGames = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleCompletedClickGames = async (e: React.MouseEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setButtonList(false)
@@ -88,7 +91,7 @@ function App() {
     setIsLoading(false)
   }
 
-  const handleListClickMovies = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleListClickMovies = async (e: React.MouseEvent) => {
     e.preventDefault()
     setIsLoading(true)
 
@@ -106,7 +109,7 @@ function App() {
     setState(completed)
   }
 
-  const handleCompletedClickMovies = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleCompletedClickMovies = async (e: React.MouseEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setButtonList(false)
@@ -125,47 +128,30 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <div className="container">
-          <button
-            className={buttonListMovies ? 'button button-clicked' : 'button'}
-            onClick={(e) => {
-              handleListClickMovies(e)
-            }}
-          >
-            Filmes Na Lista
-          </button>
-          <button
-            className={buttonCompletedMovies ? 'button button-clicked' : 'button'}
-            onClick={(e) => {
-              handleCompletedClickMovies(e)
-            }}
-          >
-            Filmes Completos
-          </button>
-        </div>
-        <div className="container">
-          <button
-            className={buttonListGames ? 'button button-clicked' : 'button'}
-            onClick={(e) => {
-              handleListClickGames(e)
-            }}
-          >
-            Jogos Na Lista
-          </button>
-          <button
-            className={buttonCompletedGames ? 'button button-clicked' : 'button'}
-            onClick={(e) => {
-              handleCompletedClickGames(e)
-            }}
-          >
-            Jogos Completos
-          </button>
-        </div>
+      <NavBar>
+        <h1 className="logo">LyaBarriere</h1>
+        <Button
+          style={{ marginLeft: '17%' }}
+          onClick={(e) => handleListClickGames(e)}
+          isActive={buttonListGames}
+        >
+          Jogos na Lista
+        </Button>
+        <Button onClick={(e) => handleCompletedClickGames(e)} isActive={buttonCompletedGames}>
+          Jogos Completos
+        </Button>
+        <Button onClick={(e) => handleListClickMovies(e)} isActive={buttonListMovies}>
+          Filmes na Lista
+        </Button>
+        <Button onClick={(e) => handleCompletedClickMovies(e)} isActive={buttonCompletedMovies}>
+          Filmes Completos
+        </Button>
+      </NavBar>
+      <main className="App-header">
+        <h1>{title}</h1>
         {isLoading && (
           <ReactLoading type={'spinningBubbles'} color={'white'} height={300} width={300} />
         )}
-        <h1>{title}</h1>
         <ul>
           {state.map((game, i) => {
             return (
@@ -178,7 +164,7 @@ function App() {
             )
           })}
         </ul>
-      </header>
+      </main>
     </div>
   )
 }

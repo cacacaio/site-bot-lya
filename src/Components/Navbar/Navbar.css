@@ -1,0 +1,12 @@
+.navbar{
+    position: fixed;
+    top: 0;
+    background-color: #5555b4;
+    display: flex;
+    width: 100%;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: center;
+}

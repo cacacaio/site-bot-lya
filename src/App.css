@@ -5,10 +5,10 @@
   height: 40vmin;
   pointer-events: none;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.logo {
+  padding-left: 5%;
+  color: white;
 }
 
 .App-header {
@@ -20,21 +20,8 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding-top: 5%;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 /* List */
 ul {
   counter-reset: index;  
@@ -62,16 +49,10 @@ li::before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 /* Element separation */
 li + li {
   border-top: 1px solid rgba(255,255,255,0.2);
-}
-@use postcss-preset-env {
-  stage: 0;
-  autoprefixer: {
-    grid: true;
-  }
-  browsers: last 2 versions
 }
 
 .button {
@@ -87,9 +68,11 @@ li + li {
   margin: 4px 2px;
   cursor: pointer;
 }
+
 .button-clicked {
   background-color: #8b8b8b;
 }
+
 .container{
   display: inline-block;
   margin-top: 30px;
